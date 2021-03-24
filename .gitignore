@@ -150,3 +150,5 @@ tags
 
 .vscode/
 .idea/
+*.db
+*.pkl

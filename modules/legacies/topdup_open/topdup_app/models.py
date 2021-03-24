@@ -1,7 +1,7 @@
 from datetime import datetime
-from . import db
+from typing import List
+import db
 import json
-import datetime
 import re
 from . import _config
 
@@ -12,12 +12,12 @@ class Post(db.Model):
     content = db.Column(db.Text, nullable=False)
     author = db.Column(db.String, default='')
     publish_time = db.Column(db.String)
-    updated_time = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    updated_time = db.Column(db.DateTime, default=datetime.utcnow)
     url = db.Column(db.String(512), nullable=False)
     similar_post_info = db.Column(db.String, default=json.dumps([]))
     max_score = db.Column(db.Float, default=0.0)
     embedd_vector = None  # not saved in database
-    similar_post = []  # similar post full information
+    similar_post: List[object] = []  # similar post full information
     score = 0  # similarity score for each post
     domain = ''  # domain
 

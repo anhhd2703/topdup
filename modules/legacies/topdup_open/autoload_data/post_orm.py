@@ -11,11 +11,11 @@ from sqlalchemy import create_engine, Column, Integer, String, DateTime, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from .log import get_logger
-from . import _config
+from ._config import DATABASE_URI
 
 
 logger = get_logger(__name__)
-engine = create_engine(_config.DATABASE_URI, echo=False)
+engine = create_engine(DATABASE_URI, echo=False)
 Base = declarative_base()
 
 class Post(Base):
@@ -100,7 +100,7 @@ def load_pickle_data(fn):
 def check_valid_post(post, session):
     try:
         l = len(post.content)
-        if l < _config.MIN_CHARACTER_LEN:
+        if l < MIN_CHARACTER_LEN:
             logger.debug(f'post content is too short: length {l}, {post.title},  {post.url}')
             return False
 
@@ -120,7 +120,7 @@ df = None
 def fake_data():
     global df
     if df is None:
-        df = pd.read_csv(_config.FAKE_DATASET)
+        df = pd.read_csv(FAKE_DATASET)
     id = randint(0, len(df)-1)
     item = df.loc[id]
     

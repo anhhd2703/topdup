@@ -9,4 +9,4 @@ with the vote count (positive and negative) from each unique user
 */
 SELECT *
 FROM vote
-WHERE voted_article_id = $1
+WHERE article_id_a = $1 OR article_id_b = $1

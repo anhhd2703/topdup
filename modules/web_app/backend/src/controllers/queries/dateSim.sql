@@ -9,5 +9,5 @@ that date (with blocks if necessary).
 */
 
 SELECT * 
-FROM article
+FROM topdup_articles
 WHERE created_date::date = '$1'

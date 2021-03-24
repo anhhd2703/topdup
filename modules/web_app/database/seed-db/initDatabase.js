@@ -58,7 +58,8 @@ function createUserTable() {
             is_verified boolean not null, 
             secret_code varchar(50),
             thumbnail varchar(200),
-            timestamp timestamp default current_timestamp
+            timestamp timestamp default current_timestamp,
+            account_type varchar(20)
         )
     `
   client.query(query)
@@ -82,18 +83,18 @@ function createArticleTable() {
 
 function createVoteTable() {
   const query = `
-        create table if not exists vote
-        (
-            id                SERIAL PRIMARY KEY,
-            voted_option      integer not null,
-            created_date      date not null,
-            article_a_id      integer not null,
-            article_b_id      integer not null,
-            user_id           integer not null,
-            constraint fk_user foreign key (user_id) references public.user(id),
-            constraint fk_article1 foreign key (article_a_id) references article(id),
-            constraint fk_article2 foreign key (article_b_id) references article(id)
-        )
+      create table if not exists vote
+      (
+          id                SERIAL PRIMARY KEY,
+          voted_option      integer not null,
+          created_date      date not null,
+          article_a_id      varchar not null,
+          article_b_id      varchar not null,
+          user_id           integer not null,
+          constraint fk_user foreign key (user_id) references public.user(id),
+          constraint fk_article1 foreign key (article_a_id) references topdup_articles(article_id),
+          constraint fk_article2 foreign key (article_b_id) references topdup_articles(article_id)
+      )
     `
 
   client.query(query)

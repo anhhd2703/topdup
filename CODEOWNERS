@@ -1,8 +1,9 @@
-@tiepvupsu @tnlong1997 @hailoc12 @seanphan @phamcong
+@tiepvupsu @tnlong1997 @hailoc12 @seanphan @phamcong @nammotd
 
 /modules/crawlers/ @hailoc12
-/modules/data_wranglers/
+/modules/data_wranglers/ @henryho8012
 /modules/legacies/
 /modules/ml/ @victurtle
 /modules/ml_api/ @victurtle
 /modules/web_app/ @phamcong
+/modules/devops/ @nammotd

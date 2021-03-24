@@ -1,7 +1,8 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -84,9 +85,11 @@ span {
 }
 
 .page-content {
+  display: flex;
+  justify-content: center;
   margin-top: 70px;
-  margin-left: 200px;
-  margin-right: 200px;
+  max-width: 1200px;
+  overflow: auto;
   padding-top: 50px;
   padding-bottom: 50px;
 }
@@ -94,6 +97,7 @@ span {
 .layout-grid {
   display: flex;
   width: 100%;
+  align-items: center;
 }
 
 .layout-cell {
@@ -122,8 +126,29 @@ span {
   margin-bottom: 10px;
 }
 
+.margin-bottom--20 {
+  margin-bottom: 20px;
+}
+
 .centered-container {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.width--80 {
+  width: 80%;
+}
+
+.bg--white {
+  background-color: white;
+}
+
+.ext-login-btn {
+  height: 30px;
+  width: 30px;
 }

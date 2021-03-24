@@ -1,5 +1,5 @@
 from autoload_data.data_utils import read_data_from_source, handle_post, logger
-from autoload_data._config import *
+from autoload_data._config import MAX_LOAD_TIME
 
 from tqdm import tqdm
 

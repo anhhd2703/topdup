@@ -1,10 +1,10 @@
 /**
 @file allSimReport.sql
 @params: None
-@return: all fields in table "similarity_report"
+@return: all fields in table "similar_docs"
 
 Return every pair of article and their similarity.
 */
 
 SELECT *
-FROM similarity_report
+FROM similar_docs

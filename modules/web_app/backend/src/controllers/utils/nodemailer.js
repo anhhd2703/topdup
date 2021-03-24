@@ -2,7 +2,8 @@ import nodemailer from "nodemailer"
 import smtpTransport  from "nodemailer-smtp-transport"
 import {emailServer} from '../../configs/index'
 
-console.log("emailServer",emailServer)
+console.log("EmailServer: ", emailServer)
+
 let transporter = nodemailer.createTransport(smtpTransport({
     service: 'gmail',
     host: 'smtp.gmail.com',

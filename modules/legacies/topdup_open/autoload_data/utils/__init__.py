@@ -2,10 +2,10 @@ import os
 import json
 import pickle
 
-from .. import _config
-from .. import log
+from ._config import PICKLE_DATASET
+from ..log import get_logger
 
-logger = log.get_logger(__name__)
+logger = get_logger(__name__)
 
 # def save_data_to_json(posts, json_file=_config.JSON_DATASET):
 #     if len(posts) > 0:
@@ -20,7 +20,7 @@ logger = log.get_logger(__name__)
 #             json.dump(all_posts, f)
 
 
-def save_body_to_pickle(items, fn=_config.PICKLE_DATASET):
+def save_body_to_pickle(items, fn=PICKLE_DATASET):
     old_items = []
     if os.path.isfile(fn):
         try:
@@ -35,7 +35,7 @@ def save_body_to_pickle(items, fn=_config.PICKLE_DATASET):
     f.close()
 
 
-def load_body_from_pickle(fn=_config.PICKLE_DATASET):
+def load_body_from_pickle(fn=PICKLE_DATASET):
     all_items = []
     try:
         f = open(fn, 'rb+')

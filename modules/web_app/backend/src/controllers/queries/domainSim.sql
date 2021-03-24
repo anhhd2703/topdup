@@ -8,5 +8,5 @@ that domain (with blocks if necessary).
 */
 
 SELECT * 
-FROM article A
-WHERE A.domain LIKE '$1'
+FROM topdup_articles A
+WHERE A.href LIKE '$1'

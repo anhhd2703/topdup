@@ -6,14 +6,14 @@ from random import choice, choices, shuffle
 from unicodedata import normalize as unicode_normalize
 from scipy.optimize import linear_sum_assignment
 import re
-from .. import _config
+from .._config import TF_IDF, SENTENCE__SCORE_THRESH
 import pickle
-from .. import log
+from ..log import get_logger
 
-logger = log.get_logger(__name__)
+logger = get_logger(__name__)
 
 
-chars_vn = [
+_chars_vn = [
     'á', 'à', 'ả', 'ã', 'ạ', 'â', 'ấ', 'ầ', 'ẩ', 'ẫ', 'ậ', 'ă', 'ắ', 'ằ', 'ẳ', 'ẵ', 'ặ',
     'ó', 'ò', 'ỏ', 'õ', 'ọ', 'ô', 'ố', 'ồ', 'ổ', 'ỗ', 'ộ', 'ơ', 'ớ', 'ờ', 'ở', 'ỡ', 'ợ',
     'é', 'è', 'ẻ', 'ẽ', 'ẹ', 'ê', 'ế', 'ề', 'ể', 'ễ', 'ệ',
@@ -23,9 +23,9 @@ chars_vn = [
 ]
 
 tf_model = pickle.load(
-    open(_config.TF_IDF, "rb")
+    open(TF_IDF, "rb")
 )
-chars_vn = "".join(chars_vn)
+chars_vn = "".join(_chars_vn)
 chars_vn = chars_vn + chars_vn.upper()
 # regex pattern of valid character
 pattern_chars_vn = f"[a-zA-Z{chars_vn} ]"
@@ -81,7 +81,7 @@ def doc2vec(text):
         return None
 
 
-def compute_doc_similarity(doc1, doc2, threshold=_config.SENTENCE__SCORE_THRESH):
+def compute_doc_similarity(doc1, doc2, threshold=SENTENCE__SCORE_THRESH):
     """
     Compute similarity 2 document
     Solution: 

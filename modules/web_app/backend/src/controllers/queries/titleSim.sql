@@ -8,5 +8,5 @@ that title (with blocks if necessary).
 */
 
 SELECT * 
-FROM article A
-WHERE A.title LIKE '$1'
+FROM topdup_articles A
+WHERE A.topic LIKE '$1'

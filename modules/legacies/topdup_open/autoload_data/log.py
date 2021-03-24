@@ -1,8 +1,8 @@
 import logging
-from . import _config
+from ._config import LOG_FILE
 
 
-def get_logger(name, f_name=_config.LOG_FILE):
+def get_logger(name, f_name=LOG_FILE):
     logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)
     formater = logging.Formatter(
