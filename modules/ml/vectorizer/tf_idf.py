@@ -1,19 +1,22 @@
 import pickle
-from ast import dump
+from typing import List
 
 import numpy as np
-from numpy.lib.function_base import vectorize
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+from modules.ml.schema import Document
 from modules.ml.vectorizer.base import DocVectorizerBase
 
 
 class TfidfDocVectorizer(DocVectorizerBase):
     def __init__(self, vector_dim: int = 128, **kwargs):
-        """Vectorize the documents and return a vector that has been embedding for indexer or comparison.
+        """
+        Vectorize the documents and return a vector that has been embedding
+        for indexer or comparison.
 
         Args:
-            vector_dim (int): Number dimentions of embedding vectors for 1st phase. Defaults to 128.
+            vector_dim (int): Number dimentions of embedding vectors for 1st phase.
+                Defaults to 128.
             **kwargs: Arbitrary keyword arguments.
         """
 
@@ -21,15 +24,17 @@ class TfidfDocVectorizer(DocVectorizerBase):
         self.vectorizer = TfidfVectorizer(max_features=vector_dim, **kwargs)
         # Set is_trained = True if vectorizer is trained, is_trained = False
         self.is_trained = False
+        self.vector_dim = vector_dim
 
-    def fit(self, train_documents: list = None):
+    def fit(self, train_documents: list = None) -> TfidfVectorizer:
         """Fit `train_documents` into the tf-idf and return tfidf vectorizer.
 
         Args:
-            train_documents (list): List of training documents for vectorizer. Defaults to None.
+            train_documents (list): List of training documents for vectorizer.
+                Defaults to None.
 
         Returns:
-            Tf idf vectorizer what is trained.
+            Tf-IDF vectorizers trained from given docs.
         """
 
         vectorizer = self.vectorizer.fit(train_documents)
@@ -39,7 +44,8 @@ class TfidfDocVectorizer(DocVectorizerBase):
 
     def fit_transform(self, train_documents: list = None):
         """Learn vocabulary and idf, return embedding matrix of training documents.
-            This is equivalent to fit followed by transform, but more efficiently implemented.
+            This is equivalent to fit followed by transform,
+            but more efficiently implemented.
 
         Args:
             train_documents (list): List of training documents for vectorizer. Defaults to None.
@@ -56,7 +62,8 @@ class TfidfDocVectorizer(DocVectorizerBase):
         return transform_vector
 
     def transform(self, documents: list = None):
-        """Transform `documents` into the tf-idf vectorizer and return a list of vector and convert to dense.
+        """Transform `documents` into the tf-idf vectorizer and return
+        a list of vector and convert to dense.
 
         Args:
             documents (list): List of documents to vectorize.
@@ -70,14 +77,15 @@ class TfidfDocVectorizer(DocVectorizerBase):
 
         return transform_vectors
 
-    def transform_document_objects(self, documents):
-        """[summary]
+    def transform_document_objects(self, documents: List[Document]) -> np.ndarray:
+        """
+        Transform given list of Document object
 
         Args:
-            documents ([type]): [description]
+            documents (List[Document])
 
         Returns:
-            [type]: [description]
+            np.ndarray: Embeddings
         """
 
         document_text = [document.text for document in documents]
@@ -107,6 +115,5 @@ class TfidfDocVectorizer(DocVectorizerBase):
         # with open(model_path, "rb") as f:
         #     tfidf_vectorizer = pickle.load(f)
         tfidf_vectorizer = pickle.load(open(model_path, "rb"))
-        print(type(tfidf_vectorizer))
 
         return tfidf_vectorizer

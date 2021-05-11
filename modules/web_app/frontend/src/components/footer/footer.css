@@ -11,6 +11,10 @@
   color: white;
 }
 
+.footer-link:nth-child(1) {
+  margin-right: 10px;
+}
+
 .topdup-label {
   font-family: Prompt;
   font-style: normal;

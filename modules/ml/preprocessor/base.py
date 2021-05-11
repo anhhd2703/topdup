@@ -3,8 +3,8 @@ from typing import Any, Dict, List
 
 class BasePreProcessor:
     def process(self, document: dict) -> List[dict]:
-        """
-        Perform document cleaning and splitting. Takes a single document as input and returns a list of documents.
+        """Performs document cleaning and splitting.
+        Takes a single document as input and returns a list of documents.
         """
         cleaned_document = self.clean(document)
         split_documents = self.split(cleaned_document)

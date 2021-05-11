@@ -3,8 +3,7 @@ from unicodedata import normalize as unicode_normalize
 
 
 def clean_wiki_text(text: str) -> str:
-    """
-    Clean wikipedia text by removing multiple new lines, removing extremely short lines,
+    """Cleans wikipedia text by removing multiple new lines, removing extremely short lines,
     adding paragraph breaks and removing empty paragraphs
     """
     # get rid of multiple new lines
@@ -31,8 +30,7 @@ def clean_wiki_text(text: str) -> str:
 
 
 def normalize_text(text: str) -> str:
-    """
-    Perform text normalization using regex patterns
+    """Performs text normalization using regex patterns
     """
     text = unicode_normalize("NFC", text)
     text = text.lower()

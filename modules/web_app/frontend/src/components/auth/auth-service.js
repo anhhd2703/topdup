@@ -12,6 +12,7 @@ export class AuthService {
   }
 
   signupNormal = (userCredential) => {
+    console.log("[userCredential]", userCredential);
     return API.post("api/v1/auth/user", userCredential)
   }
 
@@ -27,7 +28,14 @@ export class AuthService {
 
   // Create user account if not exist
   // Signup and Login are combined into one single function
-  authByGoogle = () => { }
+  authByGoogle = (ggResponse) => {
+    const body = {
+      ggToken: ggResponse.accessToken,
+      ggId: ggResponse.googleId
+    }
+    return API.post("api/v1/auth/get-token/gg", body)
+
+  }
 }
 
 export default AuthService

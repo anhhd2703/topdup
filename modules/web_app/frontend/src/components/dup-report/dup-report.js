@@ -7,10 +7,16 @@ import DupReportService from "./dup-report.service"
 import HeaderRow from "./header-row"
 import Pagination from "./pagination"
 
+const queryString = require("query-string")
+
 class DupReport extends Component {
   constructor(props) {
     super(props)
     this.dupReportService = new DupReportService()
+
+    const searchStr = props.location.search || ''
+    const queryParam = queryString.parse(searchStr) || {}
+    const _currentPage = parseInt(queryParam['page'])
 
     this.state = {
       userData: props.userData,
@@ -19,7 +25,7 @@ class DupReport extends Component {
       allReports: [],
       reportsPerPage: 8,
       loading: false,
-      currentPage: 1,
+      currentPage: _currentPage || 1,
       searchObj: {
         titleSearchT: '',
         domainSearchT: '',
@@ -31,6 +37,12 @@ class DupReport extends Component {
   componentDidMount = () => {
     this.getData()
   };
+
+  componentDidUpdate = (_prevProps, prevState, _snapshot) => {
+    if (prevState.currentPage !== this.state.currentPage) {
+
+    }
+  }
 
   getData = () => {
     const user = this.state.userData && this.state.userData.user
@@ -64,8 +76,7 @@ class DupReport extends Component {
     })
     this.setState(prevState => ({
       ...prevState,
-      simReports: filteredReports,
-      currentPage: 1
+      simReports: filteredReports
     }))
   }
 
@@ -78,7 +89,11 @@ class DupReport extends Component {
     const currentSimReports = simReports.slice(indexOfFirstReport, indexOfLastReport)
     const paginate = pageNum => this.setState({ currentPage: pageNum })
     const nextPage = () => this.setState({ currentPage: currentPage + 1 })
-    const prevPage = () => this.setState({ currentPage: currentPage - 1 })
+    const prevPage = () => {
+      if (currentPage > 1) {
+        this.setState({ currentPage: currentPage - 1 })
+      }
+    }
 
     const updateVotedReport = (report) => {
       const allReports = this.state.allReports
@@ -93,7 +108,7 @@ class DupReport extends Component {
           <HeaderRow searchObjectChanged={this.onChangeSearchObject} searchObj={searchObj} />
           <DupReportList
             simReports={currentSimReports}
-            reportVoted={updateVotedReport}            
+            reportVoted={updateVotedReport}
             loading={loading} />
         </div>
         <Pagination
@@ -109,22 +124,13 @@ class DupReport extends Component {
 
     return (
       <div>
-        <div className="sologan-container">
-          <div className="sologan-heading">Bảo vệ nội dung công sức của bạn</div>
-          <div className="sologan-description">Nhận thông báo khi nội dung của bạn bị sao chép.</div>
+        <div className="slogan-container">
+          <div className="slogan-heading">Bảo vệ nội dung của bạn</div>
+          {/* Next phrase */}
+          {/* <div className="slogan-description">Nhận thông báo khi nội dung của bạn bị sao chép.</div>  */}
         </div>
         <div style={{ width: "100%", height: "900px" }}>
           {listView}
-        </div>
-        <div className="sologan-bottom-container">
-          <div className="sologan-bottom">
-            Bạn muốn trở thành tình nguyện viên của topDup? <br /> Hoặc đăng ký nhận thông báo khi website bị sao chép.
-          </div>
-          <div className="sologan-bottom">
-            <button type="button" className="btn btn-register-bottom">
-              Đăng Ký WEBSITE
-            </button>
-          </div>
         </div>
       </div>
     )

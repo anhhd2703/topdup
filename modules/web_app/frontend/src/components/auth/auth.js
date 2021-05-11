@@ -4,7 +4,7 @@ import { AuthContext } from "./auth-context"
 import LoginModal from "./login"
 import SignupModal from "./signup"
 
-export default function Authentication() {
+export default function Authentication(props) {
   const [signupModalShow, setSignupModalShow] = useState(false)
   const [loginModalShow, setLoginModalShow] = useState(false)
   const authContext = useContext(AuthContext)
@@ -32,20 +32,28 @@ export default function Authentication() {
 
   const notLoggedInItems = (
     <>
-      <Nav.Link href="#" onClick={() => setLoginModalShow(true)}>
-        <button className="btn btn-sm login-btn">Đăng nhập</button>
-      </Nav.Link>
-      <Nav.Link href="#" onClick={() => setSignupModalShow(true)}>
-        <button className="btn btn-sm login-btn">Đăng ký</button>
-      </Nav.Link>
+      <div>
+        <Nav.Link href="#" onClick={() => setLoginModalShow(true)}>
+          <button className="btn btn-sm login-btn">Đăng nhập</button>
+        </Nav.Link>
+      </div>
+      <div>
+        <Nav.Link href="#" onClick={() => setSignupModalShow(true)}>
+          <button className="btn btn-sm login-btn">Đăng ký</button>
+        </Nav.Link>
+      </div>
     </>
   )
 
   return (
     <>
       { authContext.isLoggedIn ? loggedInItems : notLoggedInItems}
-      <SignupModal show={signupModalShow} onHide={() => setSignupModalShow(false)} />
+      <SignupModal
+        setUserData={props.setUserData}
+        show={signupModalShow}
+        onHide={() => setSignupModalShow(false)} />
       <LoginModal
+        setUserData={props.setUserData}
         show={loginModalShow}
         onHide={() => setLoginModalShow(false)}
         openSignUp={() => setSignupModalShow(true)}

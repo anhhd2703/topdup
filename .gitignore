@@ -54,6 +54,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+coverage_html/
 
 # Translations
 *.mo
@@ -117,7 +118,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-env_kd/
+topdup_env/
 
 # Spyder project settings
 .spyderproject
@@ -152,3 +153,9 @@ tags
 .idea/
 *.db
 *.pkl
+*.bin*
+
+# DB
+database.ini
+vuhuutiep.conf
+modules/dashboards/scheduler.py

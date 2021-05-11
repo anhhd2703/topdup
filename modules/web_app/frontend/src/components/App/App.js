@@ -1,21 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'font-awesome/css/font-awesome.min.css'
-import './App.css'
 import React, { useContext, useState } from "react"
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom"
-import { ToastContainer } from 'react-toastify'
+import { BrowserRouter, Route, Switch } from "react-router-dom"
 import useUserData from '../../shared/useUserData'
+import About from '../about'
+import Address from '../address'
 import { AuthContext } from '../auth/auth-context'
 import Dashboard from '../dashboard'
 import DupCompare from '../dup-compare/dup-compare'
 import DupReport from '../dup-report/dup-report'
+import ErrorPage from "../error/index"
 import Footer from '../footer/footer'
 import NavigationBar from '../navigation-bar/navigation-bar'
 import Preferences from '../preferences'
-import About from '../about'
-import TermCondition from '../term-condition'
 import PrivacyPolicy from '../privacy-policy'
-import Address from '../address'
+import TermCondition from '../term-condition'
+import './App.css'
 
 function App() {
   const { userData, setUserData } = useUserData()
@@ -46,7 +46,7 @@ function App() {
           <NavigationBar setUserData={setUserData} userData={userData} isLoggedIn={token ? true : false} />
           <div className="page-content">
             <Switch>
-              <Redirect exact from="/" to="/dup-report" />
+              <Route exact path="/" component={DupReport} />
               <Route exact path="/about" component={About} />
               <Route exact path="/contact" component={Address} />
               <Route exact path="/privacy-policy" component={PrivacyPolicy} />
@@ -57,9 +57,9 @@ function App() {
               <Route exact path="/dup-report/:id" component={DupReport} />
               <Route exact path="/dup-compare" component={() => <DupCompare />} />
               <Route exact path="/dup-finder" component={() => <DupCompare />} />
+              <Route path='*' exact={true} component={ErrorPage} />
             </Switch>
           </div>
-          <ToastContainer />
           <Footer />
         </div>
       </BrowserRouter>

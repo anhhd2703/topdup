@@ -33,7 +33,7 @@ export function HeaderRow(props) {
   return (
     <div className="sim-header-row">
       <div className="sr-title-container" style={{ 'margin-right': '230px' }}>
-        <div className="sr-header-title">Tiêu đề</div>
+        <div className="sr-header-title margin-bottom--xxs">Tiêu đề</div>
         <div className="sr-header-title">
           <div className="input-group input-group-sm mb-3">
             <input type="text" autoFocus
@@ -44,7 +44,7 @@ export function HeaderRow(props) {
         </div>
       </div>
       <div className="header-domain" style={{ width: '120px' }}>
-        <div>Tên miền</div>
+        <div className="margin-bottom--xxs">Tên miền</div>
         <div style={{ paddingRight: "5px" }}>
           <div className="input-group input-group-sm mb-3">
             <input
@@ -58,7 +58,7 @@ export function HeaderRow(props) {
         </div>
       </div>
       <div className="header-date" style={{ width: '215px' }}>
-        <div>Ngày tháng</div>
+        <div className="margin-bottom--xxs">Ngày tháng</div>
         <div style={{ paddingRight: "5px" }}>
           <div className="input-group input-group-sm mb-3">
             <DateRangePicker
@@ -67,13 +67,6 @@ export function HeaderRow(props) {
               onCancel={handleCancel}>
               <input type="text" className="form-control" placeholder="Ngày tháng..." />
             </DateRangePicker>
-            {/* <input
-                type="text"
-                className="form-control"
-                placeholder="Search..."
-                aria-label="Small"
-                aria-describedby="inputGroup-sizing-sm"
-                onChange={(e) => setDateSearchT(e.target.value)} /> */}
           </div>
         </div>
       </div>
