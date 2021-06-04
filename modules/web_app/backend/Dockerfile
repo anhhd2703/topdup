@@ -2,7 +2,7 @@ FROM node:15.11.0
 
 WORKDIR /usr/src/app
 
-COPY . .
+COPY modules/web_app/backend .
 
 RUN npm install \
     && npm run build
@@ -10,3 +10,4 @@ RUN npm install \
 EXPOSE 5000
 
 CMD ["node", "dist/src/bin/www.js"]
+

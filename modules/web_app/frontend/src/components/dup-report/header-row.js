@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import DateRangePicker from 'react-bootstrap-daterangepicker'
 
 export function HeaderRow(props) {
@@ -32,7 +32,7 @@ export function HeaderRow(props) {
 
   return (
     <div className="sim-header-row">
-      <div className="sr-title-container" style={{ 'margin-right': '230px' }}>
+      <div className="sr-title-container" style={{ marginRight: '230px' }}>
         <div className="sr-header-title margin-bottom--xxs">Tiêu đề</div>
         <div className="sr-header-title">
           <div className="input-group input-group-sm mb-3">

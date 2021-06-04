@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { Modal } from "react-bootstrap"
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-import { GoogleLogin } from 'react-google-login'
+import GoogleLogin from "react-google-login"
 import { FaFacebookSquare } from "react-icons/fa"
 import { FcGoogle } from "react-icons/fc"
 import { AuthMode } from "../../shared/constants"
@@ -47,7 +47,7 @@ export default function LoginModal(props) {
         <div className="layout-grid centered-container margin-bottom--20">
           <div style={{ cursor: 'pointer' }}>
             <GoogleLogin
-              clientId="712851565891-s8rjhfg50a8ebqmeq8ssdd4f0u0s24ca.apps.googleusercontent.com"
+              clientId="712851565891-fs77om22mk0ttiompu5qcdi7lube6jsu.apps.googleusercontent.com"
               buttonText="Login"
               onSuccess={(ggResponse) => {
                 onSubmitLogin(AuthMode.Google, ggResponse, props)
@@ -87,7 +87,7 @@ export default function LoginModal(props) {
         </div>
 
         <div className="layout-grid centered-container margin-bottom--20">
-          Chưa có tài khoản? &nbsp; <a href="#" onClick={openSignUp}>Đăng ký</a>
+          Chưa có tài khoản? &nbsp; <button type="button" className="link-button" onClick={openSignUp} > Đăng ký </button>
         </div>
       </div>
     </Modal>
